@@ -1,6 +1,6 @@
 {
   "name": "cron-js-parser",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Cron expression parser to human readable format from Expression as well as Individual values",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
