@@ -41,31 +41,31 @@ interface CronValues {
     startAt: number,
     every: number
   },
-  runEverySecondInRange: {
+  runEverySecondInRange?: {
     from: number,
     to: number
   },
-  runEveryMinuteInRange: {
+  runEveryMinuteInRange?: {
     from: number,
     to: number
   },
-  runEveryHourInRange: {
+  runEveryHourInRange?: {
     from: number,
     to: number
   },
-  runEveryDayInRange: {
+  runEveryDayInRange?: {
     from: number,
     to: number
   },
-  runEveryMonthInRange: {
+  runEveryMonthInRange?: {
     from: number,
     to: number
   },
-  runEveryWeekInRange: {
+  runEveryWeekInRange?: {
     from: string,
     to: string
   },
-  runEveryYearInRange: {
+  runEveryYearInRange?: {
     from: number,
     to: number
   }

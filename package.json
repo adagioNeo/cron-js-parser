@@ -1,6 +1,6 @@
 {
   "name": "cron-js-parser",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Cron expression parser to human readable format from Expression as well as Individual values",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,12 +20,18 @@
     "url": "https://github.com/adagioNeo/cron-js-parser/issues"
   },
   "homepage": "https://github.com/adagioNeo/cron-js-parser#readme",
+  "files": [
+    "dist"
+  ],
   "dependencies": {
     "cronstrue": "^2.9.0"
   },
   "devDependencies": {
     "typescript": "^4.7.3"
   },
+  "bundledDependencies":[
+    "cronstrue"
+  ],
   "keywords": [
     "cron",
     "cronjob",
