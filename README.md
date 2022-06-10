@@ -32,6 +32,7 @@ Library that provides two methods which help in UI and Backend based parsing for
 
 2. ***parseCronExpression***:
   Outputs a cron expression from a set of values (Look below for **Options** section to understand all the possible values). 
+  
     **Example :**
     ```
     let obj = {
@@ -60,7 +61,7 @@ Library that provides two methods which help in UI and Backend based parsing for
 * Nodejs
 * Browser
 
-## Options (keys and expected values' type)
+## Options *(keys and expected values' type)*
 ```
 isEverySecond?: boolean
 isEveryMinute?: boolean
