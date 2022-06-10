@@ -29,7 +29,7 @@
   "devDependencies": {
     "typescript": "^4.7.3"
   },
-  "bundledDependencies":[
+  "bundledDependencies": [
     "cronstrue"
   ],
   "keywords": [
