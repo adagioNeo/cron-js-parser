@@ -1,5 +1,5 @@
 # cron-js-parser
-Library that provides two methods which help in UI and Backend based parsing for parses of cron expression. Following **methods** are found to be most common use cases, also culprits which bloat the code : 
+Library that provides two methods which help in UI and Backend based parsing for parses of cron expression. Deparser will be added in future. Following **methods** are found to be most common use cases, also culprits for bloating the code : 
 1. ***parseHumanReadable***:
 
     Outputs a human readable description of the cron schedule from a cron expression or cron values. For example, given the expression "*/5 * * * *" it will output "Every 5 minutes". 
@@ -32,7 +32,7 @@ Library that provides two methods which help in UI and Backend based parsing for
 
 2. ***parseCronExpression***:
   Outputs a cron expression from a set of values (Look below for **Options** section to understand all the possible values). 
-  
+
     **Example :**
     ```
     let obj = {
