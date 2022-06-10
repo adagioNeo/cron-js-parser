@@ -1,0 +1,51 @@
+{
+  "name": "cron-js-parser",
+  "version": "1.0.0",
+  "description": "Cron expression parser to human readable format from Expression as well as Individual values",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "prepublish": "npm run build",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig-cjs.json",
+    "clean": "rm -rf node_modules",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adagioNeo/cron-js-parser.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adagioNeo/cron-js-parser/issues"
+  },
+  "homepage": "https://github.com/adagioNeo/cron-js-parser#readme",
+  "dependencies": {
+    "cronstrue": "^2.9.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  },
+  "keywords": [
+    "cron",
+    "cronjob",
+    "crontab",
+    "schedule",
+    "parser",
+    "cron expression",
+    "cron description",
+    "pretty cron",
+    "cron for humans",
+    "cron translated",
+    "cron english",
+    "cron schedule",
+    "cron english",
+    "cron schedule",
+    "human readable cron from array of seconds",
+    "human readable cron from array of hours",
+    "human readable cron from array of minutes",
+    "human readable cron from array of days",
+    "human readable cron from array of months",
+    "human readable cron from array of Year"
+  ]
+}
