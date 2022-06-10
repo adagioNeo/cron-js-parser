@@ -1,4 +1,4 @@
-import Cronstrue from "cronstrue";
+import * as Cronstrue from 'cronstrue';
 interface CronValues {
   isEverySecond?: boolean,
   isEveryMinute?: boolean,
@@ -102,7 +102,7 @@ function parseExpr(cronValues: any) {
   } else {
     expr = cronValues.atSeconds?.toString() + " ";
   }
-  
+
   if (cronValues.isEveryMinute) {
     expr = expr + "* ";
   } else if (cronValues.runEveryXMins) {
