@@ -176,3 +176,18 @@ function parseExpr(cronValues: any) {
   }
   return expr;
 }
+
+let obj = {
+  atSeconds: [1, 5, 10],
+  runEveryXMins: {
+      startAt: 1,
+      every: 10
+  },
+  runEveryHourInRange: {
+      from: 2,
+      to: 20
+  },
+  isEveryDay: true,
+  atYears: [2020,2022]
+};
+console.log(parseHumanReadable("",obj,'fr'))
