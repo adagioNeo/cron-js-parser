@@ -1,4 +1,4 @@
-import * as Cronstrue from 'cronstrue';
+import * as Cronstrue from 'cronstrue/i18n';
 interface CronValues {
   isEverySecond?: boolean,
   isEveryMinute?: boolean,
@@ -6,13 +6,13 @@ interface CronValues {
   isEveryDay?: boolean,
   isEveryMonth?: boolean,
   isEveryYear?: boolean,
-  atSeconds?: [],
-  atMins?: [],
-  atHours?: [],
-  atDays?: [],
-  atMonths?: [],
-  atWeekDays?:[],
-  atYears?: [],
+  atSeconds?: number[],
+  atMins?: number[],
+  atHours?: number[],
+  atDays?: number[],
+  atMonths?: number[],
+  atWeekDays?: string[],
+  atYears?: number[],
   runEveryXSeconds?: {
     startAt: number,
     every: number
@@ -94,37 +94,37 @@ function parseExpr(cronValues: any) {
   if (cronValues.isEverySecond) {
     expr = "* ";
   } else if (cronValues.runEveryXSeconds) {
-    expr = cronValues.runEveryXSeconds.startAt + cronValues.runEveryXSeconds.every + " ";
+    expr = cronValues.runEveryXSeconds.startAt + "/" + cronValues.runEveryXSeconds.every + " ";
   } else if (cronValues.runEverySecondInRange) {
     expr = cronValues.runEverySecondInRange.from + "-" + cronValues.runEverySecondInRange.to + " ";
-  } else if (cronValues.atSeconds?.length === 0) {
-    expr = "0 ";
-  } else {
+  } else if (cronValues.atSeconds?.length > 0) {
     expr = cronValues.atSeconds?.toString() + " ";
+  } else {
+    expr = "0 ";
   }
 
   if (cronValues.isEveryMinute) {
     expr = expr + "* ";
   } else if (cronValues.runEveryXMins) {
-    expr = expr + cronValues.runEveryXMins.startAt + cronValues.runEveryXMins.every + " ";
+    expr = expr + cronValues.runEveryXMins.startAt + "/" + cronValues.runEveryXMins.every + " ";
   } else if (cronValues.runEveryMinuteInRange) {
     expr = expr + cronValues.runEveryMinuteInRange.from + "-" + cronValues.runEveryMinuteInRange.to + " ";
-  } else if (cronValues.atMins?.length === 0) {
-    expr = expr + "0 ";
-  } else {
+  } else if (cronValues.atMins?.length > 0) {
     expr = expr + cronValues.atMins?.toString() + " ";
+  } else {
+    expr = expr + "0 ";
   }
 
   if (cronValues.isEveryHour) {
     expr = expr + "* ";
   } else if (cronValues.runEveryXHours) {
-    expr = expr + cronValues.runEveryXHours.startAt + cronValues.runEveryXHours.every + " ";
+    expr = expr + cronValues.runEveryXHours.startAt + "/" + cronValues.runEveryXHours.every + " ";
   } else if (cronValues.runEveryHourInRange) {
     expr = expr + cronValues.runEveryHourInRange.from + "-" + cronValues.runEveryHourInRange.to + " ";
-  } else if (cronValues.atHours?.length === 0) {
-    expr = expr + "0 ";
-  } else {
+  } else if (cronValues.atHours?.length > 0) {
     expr = expr + cronValues.atHours?.toString() + " ";
+  } else {
+    expr = expr + "0 ";
   }
 
   if (cronValues.isEveryDay) {
@@ -134,25 +134,25 @@ function parseExpr(cronValues: any) {
       expr = expr + "* ";
     }
   } else if (cronValues.runEveryXDays) {
-    expr = expr + cronValues.runEveryXDays.startAt + cronValues.runEveryXDays.every + " ";
+    expr = expr + cronValues.runEveryXDays.startAt + "/" + cronValues.runEveryXDays.every + " ";
   } else if (cronValues.runEveryDayInRange) {
     expr = expr + cronValues.runEveryDayInRange.from + "-" + cronValues.runEveryDayInRange.to + " ";
-  } else if (cronValues.atDays?.length === 0) {
-    expr = expr + "0 ";
-  } else {
+  } else if (cronValues.atDays?.length > 0) {
     expr = expr + cronValues.atDays?.toString() + " ";
+  } else {
+    expr = expr + "0 ";
   }
 
   if (cronValues.isEveryMonth) {
     expr = expr + "* ";
   } else if (cronValues.runEveryXMonths) {
-    expr = expr + cronValues.runEveryXMonths.startAt + cronValues.runEveryXMonths.every + " ";
+    expr = expr + cronValues.runEveryXMonths.startAt + "/" + cronValues.runEveryXMonths.every + " ";
   } else if (cronValues.runEveryMonthInRange) {
     expr = expr + cronValues.runEveryMonthInRange.from + "-" + cronValues.runEveryMonthInRange.to + " ";
-  } else if (cronValues.atMonths?.length === 0) {
-    expr = expr + "0 ";
-  } else {
+  } else if (cronValues.atMonths?.length > 0) {
     expr = expr + cronValues.atDays?.toString() + " ";
+  } else {
+    expr = expr + "* ";
   }
 
   if(cronValues.runEveryXWeekDays){
@@ -168,13 +168,25 @@ function parseExpr(cronValues: any) {
   if (cronValues.isEveryYear) {
     expr = expr + "* ";
   } else if (cronValues.runEveryXYears) {
-    expr = expr + cronValues.runEveryXYears.startAt + cronValues.runEveryXYears.every + " ";
+    expr = expr + cronValues.runEveryXYears.startAt + "/" + cronValues.runEveryXYears.every + " ";
   } else if (cronValues.runEveryYearInRange) {
     expr = expr + cronValues.runEveryYearInRange.from + "-" + cronValues.runEveryYearInRange.to + " ";
   } else if (cronValues.atYears?.length === 0) {
-    expr = expr + "0 ";
-  } else {
     expr = expr + cronValues.atYears?.toString() + " ";
   }
   return expr;
 }
+let obj = {
+  atSeconds: [1, 5, 10],
+  runEveryXMins: {
+      startAt: 10,
+      every: 10
+  },
+  runEveryHourInRange: {
+      from: 2,
+      to: 20
+  },
+  isEveryDay: true,
+  atYears: [2020,2022]
+};
+console.log(parseHumanReadable("",obj,'fr'))

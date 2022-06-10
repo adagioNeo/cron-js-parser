@@ -3,8 +3,54 @@ Library that provides two methods which help in UI and Backend based parsing for
 1. ***parseHumanReadable***:
 
     Outputs a human readable description of the cron schedule from a cron expression or cron values. For example, given the expression "*/5 * * * *" it will output "Every 5 minutes". 
+    **Example**
+    ```
+    let language = 'en' //english
+    let obj = {
+      atSeconds: [1, 5, 10],
+      runEveryXMins: {
+          startAt: 10,
+          every: 10
+      },
+      runEveryHourInRange: {
+          from: 2,
+          to: 20
+      },
+      isEveryDay: true,
+      atYears: [2020, 2022]
+    };
+    console.log(parseHumanReadable("",obj,lang))
+    lang = 'fr' //French
+    console.log(parseHumanReadable("",obj,lang))
+
+    Output : 
+    At 1, 5, and 10 seconds past the minute, every 10 minutes, starting at 10 minutes past the hour, between 02:00 AM and 08:59 PM, every day
+
+    1, 5, et 10 secondes après la minute, toutes les 10 minutes, départ 10 minutes après l'heure, de 02:00 AM à 08:59 PM, tous les jours
+    ```
 
 2. ***parseCronExpression***:
+  Outputs a cron expression from a set of values (Look below for **Options** section to understand all the possible values). 
+    **Example**
+    ```
+    let obj = {
+      atSeconds: [1, 5, 10],
+      runEveryXMins: {
+          startAt: 10,
+          every: 10
+      },
+      runEveryHourInRange: {
+          from: 2,
+          to: 20
+      },
+      isEveryDay: true,
+      atYears: [2020, 2022]
+    };
+    console.log(parseCronExpression(obj))
+
+    Output : 
+    1,5,10 10/10 2-20 * * ?
+    ```
 
 ## Support
 * Quartz Scheduler
@@ -13,7 +59,7 @@ Library that provides two methods which help in UI and Backend based parsing for
 * Nodejs
 * Browser
 
-## Examples for using Options
+## Options
 isEverySecond?: boolean
 
 isEveryMinute?: boolean
