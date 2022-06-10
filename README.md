@@ -132,7 +132,7 @@ runEveryYearInRange: {
   to: number
 }
 ```
-***atWeekDays implies every week***
+***----atWeekDays implies every week----***
 
 ## *Things to keep in mind*
 
