@@ -145,7 +145,7 @@ function parseExpr(cronValues: any) {
   } else if (cronValues.atDays?.length > 0) {
     expr = expr + cronValues.atDays?.toString() + " ";
   } else {
-    expr = expr + "0 ";
+    expr = expr + "1 ";
   }
 
   if (cronValues.isEveryMonth) {
@@ -157,7 +157,7 @@ function parseExpr(cronValues: any) {
   } else if (cronValues.atMonths?.length > 0) {
     expr = expr + cronValues.atDays?.toString() + " ";
   } else {
-    expr = expr + "* ";
+    expr = expr + "1 ";
   }
 
   if(cronValues.runEveryXWeekDays){
