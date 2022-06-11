@@ -6,8 +6,8 @@
   "types": "./dist/index.d.ts",
   "prepublishOnly": "npm run build",
   "scripts": {
-    "build": "webpack --config webpack.config.js && tsc -p tsconfig-esm.json",
-    "build-cjs-only": "webpack --config webpack.config.js",
+    "build": "npx webpack --config webpack.config.js && tsc -p tsconfig-esm.json",
+    "build-cjs-only": "npx webpack --config webpack.config.js",
     "build-esm-only": "tsc -p tsconfig-esm.json",
     "clean": "rm -rf node_modules && rm -rf dist && rm package-lock.json && npm i",
     "test": "echo \"Error: no test specified\" && exit 1"
