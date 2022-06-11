@@ -1,4 +1,4 @@
-import * as Cronstrue from 'cronstrue/i18n';
+import cronstrueWithLocales from 'cronstrue/i18n';
 interface CronValues {
   isEverySecond?: boolean,
   isEveryMinute?: boolean,
@@ -78,7 +78,7 @@ export const parseHumanReadable = (
   if (!cronExpr) {
     expr = parseExpr(cronValues);
   }
-  return Cronstrue.default.toString(expr, {
+  return cronstrueWithLocales.toString(expr, {
     verbose: true,
     locale: language
   });

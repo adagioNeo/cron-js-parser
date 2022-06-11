@@ -1,4 +1,4 @@
-import { parseHumanReadable,parseCronExpression } from './cronJsParser.js'
+import { parseHumanReadable,parseCronExpression } from './cron-js-parser.js'
 export {
   parseHumanReadable,
   parseCronExpression
