@@ -169,6 +169,12 @@ runOnWeekDay:{
   isLastWeek:false,
   weekIndex: 2
 } // => on Second Wednesday
+
+runOnWeekDay:{
+  dayIndex:2,
+  isLastWeek:true,
+  weekIndex: 7 // value will not be considered as 'isLastWeek=true'
+} // => on Last Tuesday
 ```
 ## Values to understand
 * 1 - **SUN** - Sunday
