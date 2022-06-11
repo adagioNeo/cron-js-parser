@@ -1,6 +1,6 @@
 {
   "name": "cron-js-parser",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Cron expression parser to human readable format from Expression as well as Individual values",
   "main": "./dist/cron-js-parser.js",
   "types": "./dist/index.d.ts",
@@ -40,8 +40,8 @@
   ],
   "keywords": [
     "cron",
+    "quartz scheduler",
     "cronjob",
-    "crontab",
     "schedule",
     "parser",
     "cron expression",
@@ -49,15 +49,7 @@
     "pretty cron",
     "cron for humans",
     "cron translated",
-    "cron english",
-    "cron schedule",
-    "cron english",
-    "cron schedule",
-    "human readable cron from array of seconds",
-    "human readable cron from array of hours",
-    "human readable cron from array of minutes",
-    "human readable cron from array of days",
-    "human readable cron from array of months",
-    "human readable cron from array of Year"
+    "multi language support",
+    "cron from array of values"
   ]
 }
