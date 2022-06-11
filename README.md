@@ -186,6 +186,6 @@ runOnWeekDay:{
 * 7 - **SAT** - Saturday
 ## Important Links to refer for Quartz Scheduler
 
-* https://github.com/bradymholt/cronstrue
+* https://github.com/bradymholt/cronstrue - ***Dependency package***
 * http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html 
 * https://www.freeformatter.com/cron-expression-generator-quartz.html
