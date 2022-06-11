@@ -68,6 +68,11 @@ interface CronValues {
   runEveryYearInRange?: {
     from: number,
     to: number
+  },
+  runOnWeekDay:{
+    dayIndex:number,
+    weekIndex?:number,
+    isLastWeek:boolean
   }
 }
 export const parseHumanReadable = (
@@ -157,6 +162,12 @@ function parseExpr(cronValues: any) {
 
   if(cronValues.runEveryXWeekDays){
     expr=expr+cronValues.runEveryXWeekDays.startAt+"/"+cronValues.runEveryXWeekDays.every+" "
+  } else if(cronValues.runOnWeekDay){
+    if(cronValues.runOnWeekDay.isLastWeek){
+      expr=expr+cronValues.runOnWeekDay.dayIndex+"L "
+    } else{
+      expr=expr+cronValues.runOnWeekDay.dayIndex+"#"+cronValues.runOnWeekDay.weekIndex+" "
+    }
   } else if(cronValues.runEveryWeekInRange){
     expr=expr+cronValues.runEveryWeekInRange.from+"-"+cronValues.runEveryWeekInRange.to+" "
   } else if(cronValues.atWeekDays?.length>0){

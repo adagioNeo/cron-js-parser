@@ -38,12 +38,17 @@ Library that provides two methods which help in UI and Backend based parsing of 
     let obj = {
       atSeconds: [1, 5, 10],
       runEveryXMins: {
-          startAt: 10,
-          every: 10
+        startAt: 1,
+        every: 10
       },
       runEveryHourInRange: {
-          from: 2,
-          to: 20
+        from: 2,
+        to: 20
+      },
+      runOnWeekDay: {
+        isLastWeek: false,
+        dayIndex: 6,
+        weekIndex: 3
       },
       isEveryDay: true,
       atYears: [2020, 2022]
@@ -51,7 +56,7 @@ Library that provides two methods which help in UI and Backend based parsing of 
     console.log(parseCronExpression(obj))
 
     Output : 
-    1,5,10 10/10 2-20 * * ?
+    1,5,10 1/10 2-20 * * 6#3 
     ```
 #### Note : Deparser will be added in future.
 ## Support
@@ -131,6 +136,11 @@ runEveryWeekInRange: {
 runEveryYearInRange: {
   from: number,
   to: number
+},
+runOnWeekDay:{
+  dayIndex:number,
+  weekIndex?:number,
+  isLastWeek:boolean
 }
 ```
 ***----atWeekDays implies every week----***
@@ -142,12 +152,23 @@ runEveryYearInRange: {
 runEveryXWeekDays = {
   startAt:1,
   every:2
-} //implies => start on Sunday and every 2 days
+} // => start on Sunday and every 2 days
 
 runEveryWeekInRange = {
   from:'MON',
   to:'THU'
-} //implies => start from Monday till Thursday
+} // => start from Monday till Thursday
+
+runOnWeekDay:{
+  dayIndex:2,
+  isLastWeek:true
+} // => on Last Tuesday
+
+runOnWeekDay:{
+  dayIndex: 3,
+  isLastWeek:false,
+  weekIndex: 2
+} // => on Second Wednesday
 ```
 ## Values to understand
 * 1 - **SUN** - Sunday
