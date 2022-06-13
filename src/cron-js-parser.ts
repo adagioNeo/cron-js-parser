@@ -133,11 +133,7 @@ function parseExpr(cronValues: any) {
   }
 
   if (cronValues.isEveryDay) {
-    if(cronValues.atWeekDays?.length>0){
-      expr = expr + "? ";
-    } else {
-      expr = expr + "* ";
-    }
+    expr = expr + "* ";
   } else if (cronValues.runEveryXDays) {
     expr = expr + cronValues.runEveryXDays.startAt + "/" + cronValues.runEveryXDays.every + " ";
   } else if (cronValues.runEveryDayInRange) {
@@ -145,7 +141,7 @@ function parseExpr(cronValues: any) {
   } else if (cronValues.atDays?.length > 0) {
     expr = expr + cronValues.atDays?.toString() + " ";
   } else {
-    expr = expr + "1 ";
+    expr = expr + "? ";
   }
 
   if (cronValues.isEveryMonth) {
