@@ -1,4 +1,4 @@
-# cron-js-parser
+# [cron-js-parser](https://www.npmjs.com/package/cron-js-parser)
 Library that provides two methods which help in UI and Backend based parsing of cron expression. Following **methods** are found to be most common use cases, also culprits for bloating the code : 
 1. ***parseHumanReadable***:
 
@@ -22,7 +22,7 @@ Library that provides two methods which help in UI and Backend based parsing of 
     };
     console.log(parseHumanReadable("",obj,lang))
     lang = 'fr' //French
-    console.log(parseHumanReadable("",obj,lang))
+    console.log(parseHumanReadable("1,5,10 10/10 2-20 * 1 ?",{},lang))
 
     Output : 
     At 1, 5, and 10 seconds past the minute, every 10 minutes, starting at 10 minutes past the hour, between 02:00 AM and 08:59 PM, every day
