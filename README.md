@@ -22,12 +22,12 @@ Library that provides two methods which help in UI and Backend based parsing of 
     };
     console.log(parseHumanReadable("",obj,lang))
     lang = 'fr' //French
-    console.log(parseHumanReadable("1,5,10 10/10 2-20 * 1 ?",{},lang))
+    console.log(parseHumanReadable("1,5,10 10/10 2-20 * 1 ? 2020,2022",{},lang))
 
     Output : 
-    At 1, 5, and 10 seconds past the minute, every 10 minutes, starting at 10 minutes past the hour, between 02:00 AM and 08:59 PM, every day
+    At 1, 5, and 10 seconds past the minute, every 10 minutes, starting at 10 minutes past the hour, between 02:00 AM and 08:59 PM, every day, only in January, only in 2020 and 2022
 
-    1, 5, et 10 secondes après la minute, toutes les 10 minutes, départ 10 minutes après l'heure, de 02:00 AM à 08:59 PM, tous les jours
+    1, 5, et 10 secondes après la minute, toutes les 10 minutes, départ 10 minutes après l'heure, de 02:00 AM à 08:59 PM, tous les jours, uniquement en janvier, uniquement en 2020 et 2022
     ```
 
 2. ***parseCronExpression***:

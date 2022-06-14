@@ -178,7 +178,7 @@ function parseExpr(cronValues: any) {
     expr = expr + cronValues.runEveryXYears.startAt + "/" + cronValues.runEveryXYears.every + " ";
   } else if (cronValues.runEveryYearInRange) {
     expr = expr + cronValues.runEveryYearInRange.from + "-" + cronValues.runEveryYearInRange.to + " ";
-  } else if (cronValues.atYears?.length === 0) {
+  } else if (cronValues.atYears?.length > 0) {
     expr = expr + cronValues.atYears?.toString() + " ";
   }
   return expr;
