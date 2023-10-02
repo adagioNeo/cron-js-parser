@@ -151,7 +151,7 @@ function parseExpr(cronValues: any) {
   } else if (cronValues.runEveryMonthInRange) {
     expr = expr + cronValues.runEveryMonthInRange.from + "-" + cronValues.runEveryMonthInRange.to + " ";
   } else if (cronValues.atMonths?.length > 0) {
-    expr = expr + cronValues.atDays?.toString() + " ";
+    expr = expr + cronValues.atMonths?.toString() + " ";
   } else {
     expr = expr + "1 ";
   }
