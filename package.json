@@ -1,6 +1,6 @@
 {
   "name": "cron-js-parser",
-  "version": "1.0.17",
+  "version": "1.0.18",
   "description": "Cron expression parser to human readable format from Expression as well as Individual values",
   "main": "./dist/cron-js-parser.js",
   "types": "./dist/index.d.ts",
@@ -10,6 +10,7 @@
     "build-cjs-only": "npx webpack --config webpack.config.js",
     "build-esm-only": "tsc -p tsconfig-esm.json",
     "clean": "rm -rf node_modules && rm -rf dist && rm package-lock.json && npm i",
+    "clean:pwsh": "powershell -Command \"Remove-Item -Recurse -Force -Path node_modules; Remove-Item -Recurse -Force -Path dist; Remove-Item -Force -Path package-lock.json; npm install;\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,7 +34,7 @@
     "ts-loader": "^9.3.0",
     "typescript": "^4.7.3",
     "webpack": "^5.73.0",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^5.1.4"
   },
   "bundledDependencies": [
     "cronstrue"
@@ -51,8 +52,5 @@
     "cron translated",
     "multi language support",
     "cron from array of values"
-  ],
-  "bundleDependencies": [
-    "cronstrue"
   ]
 }
