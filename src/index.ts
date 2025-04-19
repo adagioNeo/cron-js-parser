@@ -1,4 +1,7 @@
-import { parseHumanReadable,parseCronExpression } from './cron-js-parser.js'
+import { 
+  parseHumanReadable,parseCronExpression 
+} from './quartz-scheduler/parser/parser.js';
+
 export {
   parseHumanReadable,
   parseCronExpression

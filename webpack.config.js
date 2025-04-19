@@ -4,8 +4,8 @@ const TerserJsPlugin = require("terser-webpack-plugin");
 var libraryName = require("./package.json").name;
 
 var entryPoints = {
-    [libraryName]: "./src/cron-js-parser.ts",
-    [libraryName + ".min"]: "./src/cron-js-parser.ts"
+    [libraryName + '.quartz']: "./src/quartz-scheduler/parser/parser.ts",
+    [libraryName + ".quartz.min"]: "./src/quartz-scheduler/parser/parser.ts"
 };
 
 module.exports = [

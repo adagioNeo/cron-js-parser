@@ -1,4 +1,5 @@
 src
+test
 package-lock.json   
 tsconfig-cjs.json
 tsconfig.json

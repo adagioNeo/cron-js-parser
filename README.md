@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> Support for Unix scheduler coming soon
+
 # [cron-js-parser](https://www.npmjs.com/package/cron-js-parser)
 Library that provides two methods which help in UI and Backend based parsing of cron expression. Following **methods** are found to be most common use cases, also culprits for bloating the code : 
 1. ***parseHumanReadable***:
@@ -56,7 +59,7 @@ Library that provides two methods which help in UI and Backend based parsing of 
     console.log(parseCronExpression(obj))
 
     Output : 
-    1,5,10 1/10 2-20 * * 6#3 
+    1,5,10 1/10 2-20 * 1 6#3 2020,2022
     ```
 #### Note : Deparser will be added in future.
 ## Support
