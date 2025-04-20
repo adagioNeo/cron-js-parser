@@ -1,6 +1,6 @@
 {
   "name": "cron-js-parser",
-  "version": "1.1",
+  "version": "1.1.0",
   "description": "Cron expression parser to human readable format from Expression as well as Individual values",
   "main": "./dist/cron-js-parser.js",
   "types": "./dist/index.d.ts",
@@ -59,5 +59,8 @@
     "java backend",
     "native",
     "javascript cron object notation"
+  ],
+  "bundleDependencies": [
+    "cronstrue"
   ]
 }

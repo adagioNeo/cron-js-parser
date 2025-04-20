@@ -1,5 +1,11 @@
-src
-test
+src/
+test/
 package-lock.json   
 tsconfig-cjs.json
 tsconfig.json
+pnpm-lock.yaml
+CONTRIBUTING.md
+CODE_OF_CONDUCT.md
+CHANGELOG.md
+MAINTAINING.md
+.github/

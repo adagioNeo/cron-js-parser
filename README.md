@@ -151,6 +151,10 @@ Converts a cron expression string into a structured `QuartzCronObj` representati
 ### [Example for Quartz](https://github.com/adagioNeo/cron-js-parser/tree/v1.1/test/index.js)
 #### Input
 ```
+const { 
+  parseCronExpression, parseHumanReadable, deparseCronExpression
+} = require('./cron-js-parser.quartz');
+
 let obj = {
   seconds: {
     mode: 'at',
