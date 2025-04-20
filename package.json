@@ -27,7 +27,7 @@
     "dist"
   ],
   "dependencies": {
-    "cronstrue": "^2.50.0"
+    "cronstrue": "^2.59.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
