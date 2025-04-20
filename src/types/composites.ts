@@ -1,7 +1,7 @@
 import { onWeekDay } from "../constants/logical";
-import { Cycle, At, startAtRepeatCycleEvery, StartCycleInRange } from "./primitives";
+import { Cycle, At, StartAtRepeatCycleEvery, StartCycleInRange } from "./primitives";
 
-type CronValues = Cycle|At|startAtRepeatCycleEvery|StartCycleInRange;
+type CronValues = Cycle|At|StartAtRepeatCycleEvery|StartCycleInRange;
 type DaysOfWeekCronValues = CronValues | {
   mode: typeof onWeekDay,
   value: {

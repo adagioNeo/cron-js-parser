@@ -10,7 +10,7 @@ let obj = {
     value: [1, 5, 10]
   },
   minutes: {
-    mode: 'startAtRepeatCycleEvery',
+    mode: 'StartAtRepeatCycleEvery',
     value: {
       startAt: 1,
       every: 10
@@ -23,9 +23,9 @@ let obj = {
       to: 20
     }
   },
-  // daysOfMonth: {
-  //   mode: 'cycle'
-  // },
+  daysOfMonth: {
+    mode: 'cycle'
+  },
   months: {
     mode: 'cycle'
   },
@@ -33,18 +33,18 @@ let obj = {
     mode: 'at',
     value: [2020, 2022]
   },
-  // daysOfWeek: {
-  //   mode: 'on',
-  //   value: {
-  //     isLastWeek: false,
-  //     dayIndex: 6,
-  //     weekIndex: 3
-  //   } 
-  // }
+  daysOfWeek: {
+    mode: 'on',
+    value: {
+      isLastWeek: false,
+      dayIndex: 6,
+      weekIndex: 3
+    } 
+  }
 };
 const cron = parseCronExpression(obj); 
 console.log(cron);
-lang = 'en' //French
+lang = 'fr' //French
 console.log(parseHumanReadable(cron,{},lang))
 const deparsed = deparseCronExpression(cron)
 console.log(deparsed)

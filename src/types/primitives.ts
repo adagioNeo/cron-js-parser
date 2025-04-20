@@ -17,7 +17,7 @@ type At = {
   mode: typeof at,
   value: number[]
 };
-type startAtRepeatCycleEvery = {
+type StartAtRepeatCycleEvery = {
   mode: typeof startAtRepeatCycleEvery,
   value: StartAt
 };
@@ -27,5 +27,5 @@ type StartCycleInRange = {
 };
 
 export {
-  Cycle, At, startAtRepeatCycleEvery, StartCycleInRange
+  Cycle, At, StartAtRepeatCycleEvery, StartCycleInRange
 };
