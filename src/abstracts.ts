@@ -4,9 +4,9 @@ type IoSeconds = string | CronTypes.CronValues;
 type IoMinutes = string | CronTypes.CronValues;
 type IoHours = string | CronTypes.CronValues;
 type IoDays = string | CronTypes.CronValues;
-type IoWeekDays = string | CronTypes.WeekDaysCronValues;
+type IoWeekDays = string | CronTypes.WeekDaysCronValues | undefined;
 type IoMonths = string | CronTypes.CronValues;
-type IoYears = string | CronTypes.CronValues;
+type IoYears = string | CronTypes.CronValues | undefined;
 
 export default abstract class CronHandler {
   protected abstract seconds(cronObj: IoSeconds): IoSeconds;

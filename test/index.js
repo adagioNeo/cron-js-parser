@@ -1,5 +1,9 @@
-const { parseCronExpression, parseHumanReadable } = require('./cron-js-parser.quartz');
+const { 
+  parseCronExpression, parseHumanReadable, deparseCronExpression
+} = require('./cron-js-parser.quartz');
+console.log(deparseCronExpression("1,5,10 10/10 2-20 * 1 ? 2020,2022"))
 
+console.log(parseCronExpression)
 let obj = {
   seconds: {
     mode: 'at',
@@ -29,17 +33,17 @@ let obj = {
     mode: 'at',
     value: [2020, 2022]
   },
-  weekDays: {
-    mode: 'on',
-    value: {
-      isLastWeek: false,
-      dayIndex: 6,
-      weekIndex: 3
-    } 
-  }
+  // weekDays: {
+  //   mode: 'on',
+  //   value: {
+  //     isLastWeek: false,
+  //     dayIndex: 6,
+  //     weekIndex: 3
+  //   } 
+  // }
 };
 const cron = parseCronExpression(obj); 
 console.log(cron);
 lang = 'en' //French
 console.log(parseHumanReadable(cron,{},lang))
-
+console.log(deparseCronExpression(cron))

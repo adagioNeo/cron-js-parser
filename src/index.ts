@@ -1,8 +1,9 @@
 import { 
-  parseHumanReadable,parseCronExpression 
-} from './quartz-scheduler/parser/parser.js';
+  parseHumanReadable,parseCronExpression,deparseCronExpression
+} from './quartz-scheduler/main.js';
 
 export {
   parseHumanReadable,
-  parseCronExpression
+  parseCronExpression,
+  deparseCronExpression
 }

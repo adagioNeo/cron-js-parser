@@ -6,7 +6,6 @@ import {
   cycle, at, startAtRepeatCycleEvery, startCycleInRange, onWeekDay
 } from '../../constants';
 
-// TODO: mode at to check for array length, if not >0 throw error
 class Parser extends QuartzParser {
   public getExpression(cronObj: QuartzCronObj): string {
     let expr = "";
@@ -16,7 +15,7 @@ class Parser extends QuartzParser {
     expr+=this.days(cronObj.days);
     expr+=this.months(cronObj.months);
     expr+=this.weekDays(cronObj.weekDays);
-    expr+=cronObj.years !== undefined ? this.years(cronObj.years) : "";
+    expr+=this.years(cronObj.years);
     return expr;
   }
   private commonLogic(cronObj: CronTypes.CronValues): string {
@@ -53,7 +52,10 @@ class Parser extends QuartzParser {
   protected months(cronObj: CronTypes.CronValues): string {
     return this.commonLogic(cronObj);
   }
-  protected weekDays(cronObj: CronTypes.WeekDaysCronValues): string {
+  protected weekDays(cronObj: CronTypes.WeekDaysCronValues | undefined): string {
+    if(cronObj === undefined){
+      return "? ";
+    }
     let expr = "";
     if (cronObj.mode === startAtRepeatCycleEvery){
       expr = `${cronObj.value.startAt}/${cronObj.value.every} `;
@@ -71,17 +73,18 @@ class Parser extends QuartzParser {
       } else {
         throw new Error("Specified mode is missing values");
       }    
-    } else{
-      expr="? ";
     }
     return expr;
   }
-  protected years(cronObj: CronTypes.CronValues): string {
-    return this.commonLogic(cronObj);
+  protected years(cronObj: CronTypes.CronValues | undefined): string {
+    if(cronObj !== undefined){
+      return this.commonLogic(cronObj);
+    }
+    return "";
   }
 }
 
-const parseHumanReadable = (
+export const parseHumanReadable = (
   cronExpr: string, cronValues: QuartzCronObj, language: string
 ): string => {
   let expr = cronExpr;
@@ -95,12 +98,7 @@ const parseHumanReadable = (
   });
 }
 
-const parseCronExpression = (cronValues: QuartzCronObj): string => {
+export const parseCronExpression = (cronValues: QuartzCronObj): string => {
   const parser = new Parser();
   return parser.getExpression(cronValues);
-}
-
-export {
-  parseCronExpression,
-  parseHumanReadable
 }

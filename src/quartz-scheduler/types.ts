@@ -5,7 +5,7 @@ type QuartzCronObj = {
   minutes: CronTypes.CronValues,
   hours: CronTypes.CronValues,
   days: CronTypes.CronValues,
-  weekDays: CronTypes.WeekDaysCronValues,
+  weekDays?: CronTypes.WeekDaysCronValues,
   months: CronTypes.CronValues,
   years?: CronTypes.CronValues
 }
