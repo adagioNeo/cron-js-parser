@@ -23,7 +23,7 @@ let obj = {
       to: 20
     }
   },
-  days: {
+  daysOfMonth: {
     mode: 'cycle'
   },
   months: {
@@ -33,7 +33,7 @@ let obj = {
     mode: 'at',
     value: [2020, 2022]
   },
-  // weekDays: {
+  // daysOfWeek: {
   //   mode: 'on',
   //   value: {
   //     isLastWeek: false,

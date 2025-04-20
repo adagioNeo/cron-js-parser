@@ -1,4 +1,4 @@
-import { CronValues, WeekDaysCronValues } from "../../types/composites";
+import { CronValues, DaysOfWeekCronValues } from "../../types/composites";
 import { QuartzDeparser } from "../abstracts";
 import QuartzCronObj from "../types";
 import {
@@ -12,12 +12,12 @@ class Deparser extends QuartzDeparser {
       seconds: this.seconds(expressions[0]),
       minutes: this.minutes(expressions[1]),
       hours: this.hours(expressions[2]),
-      days: this.days(expressions[3]),
+      daysOfMonth: this.daysOfMonth(expressions[3]),
       months: this.months(expressions[4]),
     };
-    const weekDays = this.weekDays(expressions[5]);
-    if(weekDays) {
-      cronObj['weekDays'] = weekDays; 
+    const daysOfWeek = this.daysOfWeek(expressions[5]);
+    if(daysOfWeek) {
+      cronObj['daysOfWeek'] = daysOfWeek; 
     }
     if(this.hasYearConfig(expressions)) {
       cronObj['years'] = this.years(expressions[6])
@@ -33,13 +33,13 @@ class Deparser extends QuartzDeparser {
   protected hours(cronObj: string): CronValues {
     return this.commonLogic(cronObj);
   }
-  protected days(cronObj: string): CronValues {
+  protected daysOfMonth(cronObj: string): CronValues {
     return this.commonLogic(cronObj);
   }
   protected months(cronObj: string): CronValues {
     return this.commonLogic(cronObj);
   }
-  protected weekDays(cronObj: string): WeekDaysCronValues | undefined {
+  protected daysOfWeek(cronObj: string): DaysOfWeekCronValues | undefined {
     const trimmed = cronObj.trim();
     if (/^\d+\/\d+$/.test(trimmed)) {
       const [startAtStr, everyStr] = trimmed.split('/');

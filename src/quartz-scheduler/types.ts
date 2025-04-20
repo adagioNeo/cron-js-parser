@@ -4,9 +4,9 @@ type QuartzCronObj = {
   seconds: CronTypes.CronValues,
   minutes: CronTypes.CronValues,
   hours: CronTypes.CronValues,
-  days: CronTypes.CronValues,
-  weekDays?: CronTypes.WeekDaysCronValues,
+  daysOfMonth: CronTypes.CronValues,
   months: CronTypes.CronValues,
+  daysOfWeek?: CronTypes.DaysOfWeekCronValues,
   years?: CronTypes.CronValues
 }
 export default QuartzCronObj;

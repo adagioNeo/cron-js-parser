@@ -42,9 +42,9 @@ import { parseCronExpression } from './parser';
 //     expect(parseCronExpression(cronValues)).toBe("0/5 0/10 1/2 0 1 ? ");
 //   });
 
-//   it('should handle specific days, months, years', () => {
+//   it('should handle specific daysOfMonth, months, years', () => {
 //     const cronValues = {
-//       atDays: [1, 15],
+//       atDaysOfMonth: [1, 15],
 //       atMonths: [6, 12],
 //       atYears: [2023, 2024],
 //     };
@@ -80,16 +80,16 @@ import { parseCronExpression } from './parser';
 //     expect(parseCronExpression(cronValues)).toBe("0 0 0 ? 1 SUN-THU");
 //   });
 
-//   it('should handle atWeekDays array', () => {
+//   it('should handle atDaysOfWeek array', () => {
 //     const cronValues = {
-//       atWeekDays: ["SUN", "TUE", "THU"],
+//       atDaysOfWeek: ["SUN", "TUE", "THU"],
 //     };
 //     expect(parseCronExpression(cronValues)).toBe("0 0 0 ? 1 SUN,TUE,THU");
 //   });
 
-//   it('should handle runEveryXWeekDays', () => {
+//   it('should handle runEveryXDaysOfWeek', () => {
 //     const cronValues = {
-//       runEveryXWeekDays: { startAt: 1, every: 2 },
+//       runEveryXDaysOfWeek: { startAt: 1, every: 2 },
 //     };
 //     expect(parseCronExpression(cronValues)).toBe("0 0 0 ? 1 1/2 ");
 //   });

@@ -12,9 +12,9 @@ class Parser extends QuartzParser {
     expr+=this.seconds(cronObj.seconds);
     expr+=this.minutes(cronObj.minutes);
     expr+=this.hours(cronObj.hours);
-    expr+=this.days(cronObj.days);
+    expr+=this.daysOfMonth(cronObj.daysOfMonth);
     expr+=this.months(cronObj.months);
-    expr+=this.weekDays(cronObj.weekDays);
+    expr+=this.daysOfWeek(cronObj.daysOfWeek);
     expr+=this.years(cronObj.years);
     return expr;
   }
@@ -46,13 +46,13 @@ class Parser extends QuartzParser {
   protected hours(cronObj: CronTypes.CronValues): string {
     return this.commonLogic(cronObj);
   }
-  protected days(cronObj: CronTypes.CronValues): string {
+  protected daysOfMonth(cronObj: CronTypes.CronValues): string {
     return this.commonLogic(cronObj);
   }
   protected months(cronObj: CronTypes.CronValues): string {
     return this.commonLogic(cronObj);
   }
-  protected weekDays(cronObj: CronTypes.WeekDaysCronValues | undefined): string {
+  protected daysOfWeek(cronObj: CronTypes.DaysOfWeekCronValues | undefined): string {
     if(cronObj === undefined){
       return "? ";
     }
