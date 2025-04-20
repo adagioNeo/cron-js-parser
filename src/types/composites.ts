@@ -1,4 +1,4 @@
-import { onWeekDay } from "../constants";
+import { onWeekDay } from "../constants/logical";
 import { Cycle, At, startAtRepeatCycleEvery, StartCycleInRange } from "./primitives";
 
 type CronValues = Cycle|At|startAtRepeatCycleEvery|StartCycleInRange;

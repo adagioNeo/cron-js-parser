@@ -3,10 +3,12 @@ import { QuartzDeparser } from "../abstracts";
 import QuartzCronObj from "../types";
 import {
   cycle, at, startAtRepeatCycleEvery, startCycleInRange, onWeekDay
-} from '../../constants';
+} from '../../constants/logical';
+import { ErrorMessages } from "./constants";
 
 class Deparser extends QuartzDeparser {
   public getCronObject(cronExpr: string): QuartzCronObj {
+    this.isValid(cronExpr);
     const expressions = cronExpr.split(' ');
     const cronObj: QuartzCronObj = {
       seconds: this.seconds(expressions[0]),
@@ -24,6 +26,13 @@ class Deparser extends QuartzDeparser {
     }
     return cronObj;
   }
+  protected isValid(cronObj: string): boolean {
+    const expressions = cronObj.split(' ');
+    if(expressions.length < 6) {
+      throw new Error(ErrorMessages.minimumRequired);
+    }
+    return true;
+  }
   protected seconds(cronObj: string): CronValues {
     return this.commonLogic(cronObj);
   }
@@ -33,7 +42,11 @@ class Deparser extends QuartzDeparser {
   protected hours(cronObj: string): CronValues {
     return this.commonLogic(cronObj);
   }
-  protected daysOfMonth(cronObj: string): CronValues {
+  protected daysOfMonth(cronObj: string): CronValues | undefined {
+    const trimmed = cronObj.trim();
+    if(trimmed==="?") {
+      return undefined
+    }
     return this.commonLogic(cronObj);
   }
   protected months(cronObj: string): CronValues {
@@ -41,6 +54,9 @@ class Deparser extends QuartzDeparser {
   }
   protected daysOfWeek(cronObj: string): DaysOfWeekCronValues | undefined {
     const trimmed = cronObj.trim();
+    if(trimmed==="?") {
+      return undefined
+    }
     if (/^\d+\/\d+$/.test(trimmed)) {
       const [startAtStr, everyStr] = trimmed.split('/');
       return {
@@ -88,9 +104,6 @@ class Deparser extends QuartzDeparser {
         mode: at,
         value: values,
       };
-    }
-    if(trimmed==="?") {
-      return undefined
     }
   }
   protected years(cronObj: string): CronValues {

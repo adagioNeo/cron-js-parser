@@ -1,6 +1,6 @@
 import {
   cycle, at, startAtRepeatCycleEvery, startCycleInRange
-} from "../constants";
+} from "../constants/logical";
 
 type StartAt = {
   startAt: number,

@@ -4,7 +4,7 @@ import { QuartzParser } from '../abstracts';
 import QuartzCronObj from '../types';
 import {
   cycle, at, startAtRepeatCycleEvery, startCycleInRange, onWeekDay
-} from '../../constants';
+} from '../../constants/logical';
 
 class Parser extends QuartzParser {
   public getExpression(cronObj: QuartzCronObj): string {
@@ -17,6 +17,9 @@ class Parser extends QuartzParser {
     expr+=this.daysOfWeek(cronObj.daysOfWeek);
     expr+=this.years(cronObj.years);
     return expr;
+  }
+  protected isValid(cronObj: QuartzCronObj): boolean {
+    return true;
   }
   private commonLogic(cronObj: CronTypes.CronValues): string {
     let expr = "";
@@ -46,7 +49,10 @@ class Parser extends QuartzParser {
   protected hours(cronObj: CronTypes.CronValues): string {
     return this.commonLogic(cronObj);
   }
-  protected daysOfMonth(cronObj: CronTypes.CronValues): string {
+  protected daysOfMonth(cronObj: CronTypes.CronValues | undefined): string {
+    if(cronObj === undefined){
+      return "? ";
+    }
     return this.commonLogic(cronObj);
   }
   protected months(cronObj: CronTypes.CronValues): string {

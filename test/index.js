@@ -23,9 +23,9 @@ let obj = {
       to: 20
     }
   },
-  daysOfMonth: {
-    mode: 'cycle'
-  },
+  // daysOfMonth: {
+  //   mode: 'cycle'
+  // },
   months: {
     mode: 'cycle'
   },
@@ -46,4 +46,6 @@ const cron = parseCronExpression(obj);
 console.log(cron);
 lang = 'en' //French
 console.log(parseHumanReadable(cron,{},lang))
-console.log(deparseCronExpression(cron))
+const deparsed = deparseCronExpression(cron)
+console.log(deparsed)
+console.log(parseCronExpression(deparsed))
