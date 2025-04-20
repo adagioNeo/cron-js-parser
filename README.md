@@ -1,182 +1,218 @@
+
+> Hey there! Would you take a quick second to ⭐️ star this [repo](https://github.com/adagioNeo/cron-js-parser)?
+
+<img align="left" src="https://user-images.githubusercontent.com/759811/210273710-b13913e2-0a71-4d9d-94da-1fe538b8a73e.gif" width="120"/>
+
+<br/>
+<br/>
+
 # [cron-js-parser](https://www.npmjs.com/package/cron-js-parser)
-Library that provides two methods which help in UI and Backend based parsing of cron expression. Following **methods** are found to be most common use cases, also culprits for bloating the code : 
-1. ***parseHumanReadable***:
 
-    Outputs a human readable description of the cron schedule from a cron expression or cron values. For example, given the expression "*/5 * * * *" it will output "Every 5 minutes". 
+> 📢Support for <u>_Unix_</u> scheduler coming soon
+## Contents
+- [Introduction](#introduction)
+- [Supported Schedulers](#supported-schedulers)
+- [_JCON_ - Javascript Cron Object Notation](#jcon)
+  - [Overview](#overview)
+  - [Mode Object](#mode-object)
+- [Quartz Scheduler](#quartz-scheduler)
+  - [Methods Overview](#methods-overview)
+    - [Parsers](#parsers)
+    - [Deparser](#deparser)
+  - [Example For Quartz](#example-for-quartz)
+  - [Cron Trigger Standards](#cron-trigger-standards)
+- [Support](#support)
+- [Important Links](#important-links)
 
-    **Example :**
-    ```
-    let language = 'en' //english
-    let obj = {
-      atSeconds: [1, 5, 10],
-      runEveryXMins: {
-          startAt: 10,
-          every: 10
-      },
-      runEveryHourInRange: {
-          from: 2,
-          to: 20
-      },
-      isEveryDay: true,
-      atYears: [2020, 2022]
-    };
-    console.log(parseHumanReadable("",obj,lang))
-    lang = 'fr' //French
-    console.log(parseHumanReadable("1,5,10 10/10 2-20 * 1 ? 2020,2022",{},lang))
+## Introduction
+Cron expressions are powerful, but can be pretty confusing. The aim of this library is to standardize javascript logic for handling cron expressions. 
 
-    Output : 
-    At 1, 5, and 10 seconds past the minute, every 10 minutes, starting at 10 minutes past the hour, between 02:00 AM and 08:59 PM, every day, only in January, only in 2020 and 2022
+>✨ Introducing <u>**JCON**</u> - [*Javascript Cron Object Notation*](#jcon)
 
-    1, 5, et 10 secondes après la minute, toutes les 10 minutes, départ 10 minutes après l'heure, de 02:00 AM à 08:59 PM, tous les jours, uniquement en janvier, uniquement en 2020 et 2022
-    ```
-
-2. ***parseCronExpression***:
-  Outputs a cron expression from a set of values (Look below for **Options** section to understand all the possible values). 
-
-    **Example :**
-    ```
-    let obj = {
-      atSeconds: [1, 5, 10],
-      runEveryXMins: {
-        startAt: 1,
-        every: 10
-      },
-      runEveryHourInRange: {
-        from: 2,
-        to: 20
-      },
-      runOnWeekDay: {
-        isLastWeek: false,
-        dayIndex: 6,
-        weekIndex: 3
-      },
-      isEveryDay: true,
-      atYears: [2020, 2022]
-    };
-    console.log(parseCronExpression(obj))
-
-    Output : 
-    1,5,10 1/10 2-20 * * 6#3 
-    ```
-#### Note : Deparser will be added in future.
-## Support
-* Quartz Scheduler
-* Javascript
-* Typescript
-* Nodejs
-* Browser
-
-## Options *(keys and expected values' type)*
+## Supported Schedulers
+- [Quartz Scheduler](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) - Unix-based Java scheduler, referred to as Cron Trigger
+## JCON
+### Overview
+> ℹ️ More on mode objects can be found [here](#mode-object)
 ```
-isEverySecond?: boolean
-isEveryMinute?: boolean
-isEveryHour?: boolean
-isEveryDay?: boolean
-isEveryMonth?: boolean
-isEveryYear?: boolean
-atSeconds?: []
-atMins?: []
-atHours?: []
-atDays?: []
-atMonths?: [],
-atWeekDays?:[],
-atYears?: [],
-runEveryXSeconds?: {
-  startAt: number,
-  every: number
-},
-runEveryXMins?: {
-  startAt: number,
-  every: number
-},
-runEveryXHours?: {
-  startAt: number,
-  every: number
-},
-runEveryXDays?: {
-  startAt: number,
-  every: number
-},
-runEveryXMonths?: {
-  startAt: number,
-  every: number
-},
-runEveryXWeekDays?: {
-  startAt: number,
-  every: number
-},
-runEveryXYears?: {
-  startAt: number,
-  every: number
-},
-runEverySecondInRange: {
-  from: number,
-  to: number
-},
-runEveryMinuteInRange: {
-  from: number,
-  to: number
-},
-runEveryHourInRange: {
-  from: number,
-  to: number
-},
-runEveryDayInRange: {
-  from: number,
-  to: number
-},
-runEveryMonthInRange: {
-  from: number,
-  to: number
-},
-runEveryWeekInRange: {
-  from: string,
-  to: string
-},
-runEveryYearInRange: {
-  from: number,
-  to: number
-},
-runOnWeekDay:{
-  dayIndex:number,
-  weekIndex?:number,
-  isLastWeek:boolean
+{
+  seconds: <Mode Object>,
+  minutes: <Mode Object>
+  hours: <Mode Object>,
+  daysOfMonth?: <Mode Object>,
+  months: <Mode Object>,
+  daysOfWeek?: <Mode Object>,
+  years?: <Mode Object>
 }
 ```
-***----atWeekDays implies every week----***
+> Mandatory Fields - **seconds, minutes, hours, months** </br>
+> Optional Fields - **daysOfMonth, daysOfWeek, years**
+### Mode Object
+These constants define the allowed string literal values for the `mode` property in the respective types.
+#### Types
 
-## *Things to keep in mind*
+##### 1. `Cycle`
 
-* Values that need to be set are different for **runEveryXWeekDays** && **runEveryWeekInRange** (See section below *Values to understand*) 
+Represents an object with a fixed mode indicating a cycle.
 ```
-runEveryXWeekDays = {
-  startAt:1,
-  every:2
-} // => start on Sunday and every 2 days
-
-runEveryWeekInRange = {
-  from:'MON',
-  to:'THU'
-} // => start from Monday till Thursday
-
-runOnWeekDay:{
-  dayIndex:2,
-  isLastWeek:true
-} // => on Last Tuesday
-
-runOnWeekDay:{
-  dayIndex: 3,
-  isLastWeek:false,
-  weekIndex: 2
-} // => on Second Wednesday
-
-runOnWeekDay:{
-  dayIndex:2,
-  isLastWeek:true,
-  weekIndex: 7 // value will not be considered as 'isLastWeek=true'
-} // => on Last Tuesday
+type Cycle = {
+  mode: typeof cycle;
+};
 ```
-## Values to understand
+---
+
+##### 2. `At`
+
+Represents an object with a mode `'at'` and an array of numeric values.
+```
+type At = {
+  mode: typeof at;
+  value: number[];
+};
+```
+---
+
+##### 3. `StartAtRepeatCycleEvery`
+
+Represents an object with a mode `'StartAtRepeatCycleEvery'` and a `StartAt` object as its value.
+```
+type StartAtRepeatCycleEvery = {
+  mode: typeof startAtRepeatCycleEvery;
+  value: StartAt;
+};
+```
+
+---
+##### 4. `StartCycleInRange`
+
+Represents an object with a mode `'startCycleInRange'` and an `InRange` object as its value.
+```
+type StartCycleInRange = {
+  mode: typeof startCycleInRange;
+  value: InRange;
+};
+```
+#### Summary
+Type| Property | Type           | Description                  |
+----| -------- | -------------- | ----------------------------|
+cycle| `mode`   | `typeof cycle` | Must be the literal string `'cycle'` |
+At| `mode`   | `typeof at`  | Must be the literal string `'at'` |
+At| `value`  | `number[]`   | An array of numbers specifying values |
+StartAtRepeatCycleEvery| `mode`   | `typeof startAtRepeatCycleEvery` | Must be the literal string `'startAtRepeatCycleEvery'` |
+StartAtRepeatCycleEvery| `value`  | `StartAt`                   | An object containing `startAt` and `every` numbers |
+StartCycleInRange| `mode`   | `typeof startCycleInRange`  | Must be the literal string `'startCycleInRange'` |
+StartCycleInRange| `value`  | `InRange`                   | An object defining a range with `from` and `to` |
+
+## [Quartz Scheduler](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html)
+### Methods Overview
+#### Parsers
+##### <u>parseCronExpression</u>
+```
+export const parseCronExpression = (cronValues: QuartzCronObj): string
+```
+###### Description
+Converts a structured `QuartzCronObj` back into a cron expression string.
+
+###### Input
+- `cronValues` (`QuartzCronObj`): An object representing the components of a cron expression.
+
+###### Output
+- Returns a `string` representing the cron expression generated from the input object.
+
+##### <u>parseHumanReadable</u>
+```
+export const parseHumanReadable = (
+  cronExpr: string,
+  cronValues: QuartzCronObj,
+  language: string
+): string
+```
+###### Description
+Generates a human-readable description of a cron expression in the specified language.
+
+###### Inputs
+- `cronExpr` (`string`): The cron expression string. If empty or falsy, the function will generate the expression from `cronValues`.
+- `cronValues` (`QuartzCronObj`): An object representing the cron expression components.
+- `language` (`string`): The locale/language code (e.g., `'en'`, `'fr'`, `'de'`) to format the description.
+
+###### Output
+- Returns a `string` containing a verbose, human-readable description of the cron schedule in the specified language.
+#### Deparser
+##### <u>deparseCronExpression</u>
+###### Description
+Converts a cron expression string into a structured `QuartzCronObj` representation.
+
+###### Input
+- `cronExpr` (`string`): A valid cron expression string in Quartz format.
+
+###### Output
+- Returns a `QuartzCronObj` — an object representing the parsed components of the cron expression.
+
+### [Example for Quartz](https://github.com/adagioNeo/cron-js-parser/tree/v1.1/test/index.js)
+#### Input
+```
+let obj = {
+  seconds: {
+    mode: 'at',
+    value: [1, 5, 10]
+  },
+  minutes: {
+    mode: 'StartAtRepeatCycleEvery',
+    value: {
+      startAt: 1,
+      every: 10
+    }
+  },
+  hours: {
+    mode:'startCycleInRange',
+    value: {
+      from: 2,
+      to: 20
+    }
+  },
+  daysOfMonth: {
+    mode: 'cycle'
+  },
+  months: {
+    mode: 'cycle'
+  },
+  years: {
+    mode: 'at',
+    value: [2020, 2022]
+  },
+  daysOfWeek: {
+    mode: 'on',
+    value: {
+      isLastWeek: false,
+      dayIndex: 6,
+      weekIndex: 3
+    } 
+  }
+};
+const cron = parseCronExpression(obj); 
+console.log(cron);
+lang = 'fr' //French
+console.log(parseHumanReadable(cron,{},lang))
+const deparsed = deparseCronExpression(cron)
+console.log(deparsed)
+console.log(parseCronExpression(deparsed))
+```
+#### Output
+```
+1,5,10 1/10 2-20 ? * ? 2020,2022
+1, 5, et 10 secondes après la minute, toutes les 10 minutes, à partir de 1 minutes après l'heure, de 02:00 à 20:59, tous les jours, uniquement en 2020 et 2022
+{
+  seconds: { mode: 'at', value: [ 1, 5, 10 ] },
+  minutes: { mode: 'StartAtRepeatCycleEvery', value: { startAt: 1, every: 10 } },
+  hours: { mode: 'startCycleInRange', value: { from: 2, to: 20 } },
+  daysOfMonth: undefined,
+  months: { mode: 'cycle' },
+  years: { mode: 'at', value: [ 2020, 2022 ] }
+}
+1,5,10 1/10 2-20 ? * ? 2020,2022
+```
+### Cron Trigger Standards
+#### Days of Week
 * 1 - **SUN** - Sunday
 * 2 - **MON** - Monday
 * 3 - **TUE** - Tuesday
@@ -184,8 +220,13 @@ runOnWeekDay:{
 * 5 - **THU** - Thursday
 * 6 - **FRI** - Friday
 * 7 - **SAT** - Saturday
-## Important Links to refer for Quartz Scheduler
 
-* https://github.com/bradymholt/cronstrue - ***Dependency package***
-* http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html 
+## Support
+* Javascript
+* Typescript
+* Nodejs
+* Browser
+
+## Important Links
+
 * https://www.freeformatter.com/cron-expression-generator-quartz.html
