@@ -43,6 +43,7 @@
     "cronstrue"
   ],
   "keywords": [
+    "jscon",
     "cron",
     "quartz scheduler",
     "cronjob",
@@ -54,6 +55,9 @@
     "cron for humans",
     "cron translated",
     "multi language support",
-    "cron from array of values"
+    "cron from array of values",
+    "java backend",
+    "native",
+    "javascript cron object notation"
   ]
 }

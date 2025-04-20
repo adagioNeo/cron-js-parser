@@ -5,6 +5,7 @@
 > Breaking changes
 ### Added
 - Deparser ([Quartz Scheduler](https://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html) supported)
+- JSCON - JavaScript Cron Object Notation
 ### Changed
 - Parser input format (Check latest [README.md](https://github.com/adagioNeo/cron-js-parser/blob/main/README.md))
 - Explicit support for Quartz Scheduler (Upcoming support for Unix Scheduler)
